@@ -8,9 +8,9 @@ terraform {
     }
   }
   required_providers {
-    avi = {
+    vsphere = {
       source  = "hashicorp/vsphere"
-      version = "2.0.2"
+      version = "~> 2.2.0"
     }
   }
 }

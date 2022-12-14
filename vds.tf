@@ -28,7 +28,7 @@ resource "vsphere_vnic" "vsan_vmotion" {
   ipv4 {
     ip      = split("/", each.value.vsan_cidr)[0]
     netmask = cidrnetmask(each.value.vsan_cidr)
-    gw = cidrhost(each.value.vsan_cidr, 1)
+    gw      = cidrhost(each.value.vsan_cidr, 1)
   }
   depends_on = [vsphere_distributed_virtual_switch.vsan_vmotion]
 }
@@ -52,31 +52,31 @@ resource "vsphere_distributed_virtual_switch" "cplane" {
 resource "vsphere_distributed_port_group" "service" {
   name                            = "service"
   distributed_virtual_switch_uuid = vsphere_distributed_virtual_switch.cplane.id
-  type = "ephemeral"
-  vlan_id = "101"
-  auto_expand = false
+  type                            = "ephemeral"
+  vlan_id                         = "101"
+  auto_expand                     = false
 }
 
 resource "vsphere_distributed_port_group" "tkg" {
   name                            = "tkg"
   distributed_virtual_switch_uuid = vsphere_distributed_virtual_switch.cplane.id
-  type = "ephemeral"
-  vlan_id = "102"
-  auto_expand = false
+  type                            = "ephemeral"
+  vlan_id                         = "102"
+  auto_expand                     = false
 }
 
 resource "vsphere_distributed_port_group" "airgapped" {
   name                            = "airgapped"
   distributed_virtual_switch_uuid = vsphere_distributed_virtual_switch.cplane.id
-  type = "ephemeral"
-  vlan_id = "103"
-  auto_expand = false
+  type                            = "ephemeral"
+  vlan_id                         = "103"
+  auto_expand                     = false
 }
 
 resource "vsphere_distributed_port_group" "workload" {
   name                            = "workload"
   distributed_virtual_switch_uuid = vsphere_distributed_virtual_switch.cplane.id
-  type = "ephemeral"
-  vlan_id = "104"
-  auto_expand = false
+  type                            = "ephemeral"
+  vlan_id                         = "104"
+  auto_expand                     = false
 }

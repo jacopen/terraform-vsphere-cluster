@@ -20,7 +20,7 @@ resource "vsphere_host" "cluster_hosts" {
   hostname = each.value.ip
   username = each.value.user
   password = each.value.password
-  license  = var.licenses.esxi
+  #license  = var.licenses.esxi
   cluster    = vsphere_compute_cluster.compute_cluster.id
   thumbprint = each.value.thumbprint
 }
@@ -30,7 +30,7 @@ resource "vsphere_host" "standalone_hosts" {
   hostname = each.value.ip
   username = each.value.user
   password = each.value.password
-  license  = var.licenses.esxi
+  #license  = var.licenses.esxi
   datacenter = vsphere_datacenter.datacenter.moid
   thumbprint = each.value.thumbprint
 }
@@ -55,6 +55,24 @@ resource "vsphere_folder" "tkg_folder" {
 
 resource "vsphere_folder" "bastion_folder" {
   path          = "bastion"
+  type          = "vm"
+  datacenter_id = vsphere_datacenter.datacenter.moid
+}
+
+resource "vsphere_folder" "packer" {
+  path          = "Packer"
+  type          = "vm"
+  datacenter_id = vsphere_datacenter.datacenter.moid
+}
+
+resource "vsphere_folder" "hashistack" {
+  path          = "HashiStack"
+  type          = "vm"
+  datacenter_id = vsphere_datacenter.datacenter.moid
+}
+
+resource "vsphere_folder" "vault" {
+  path          = "Vault"
   type          = "vm"
   datacenter_id = vsphere_datacenter.datacenter.moid
 }

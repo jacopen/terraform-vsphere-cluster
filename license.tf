@@ -9,7 +9,3 @@ resource "vsphere_license" "vsan" {
 resource "vsphere_license" "esxi" {
   license_key = var.licenses.esxi
 }
-
-resource "vsphere_license" "tanzu" {
-  license_key = var.licenses.tanzu
-}
